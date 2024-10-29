@@ -1,0 +1,11 @@
+
+<h1>Companies</h1>
+<ul *ngIf="companies">
+  <li *ngFor="let company of companies">
+    <h3>{{ company.name }}</h3>
+    <p>Org Number: {{ company.organizationNumber }}</p>
+    <p>Contact: {{ company.contactPerson }}</p>
+    <p>Phone: {{ company.phoneNumber }}</p>
+  </li>
+</ul>
+<p *ngIf="!companies">No companies found.</p>

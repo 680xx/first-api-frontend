@@ -1,28 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Company {
-  id: number;
-  name: string;
-  organizationNumber: string;
-  contactPerson: string;
-  phoneNumber: string;
-}
+import { Company } from '../models/company';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
-  private apiUrl = 'http://localhost:5028'; // Sätt din API-bas-URL här
+  private apiUrl = 'http://localhost:5028/api/company';
 
   constructor(private http: HttpClient) {}
 
   getCompanies(): Observable<Company[]> {
-    return this.http.get<Company[]>(`${this.apiUrl}`);
+    return this.http.get<Company[]>(this.apiUrl);
   }
 
-  getCompany(id: number): Observable<Company> {
+  getCompanyById(id: number): Observable<Company> {
     return this.http.get<Company>(`${this.apiUrl}/${id}`);
   }
 
@@ -33,8 +26,19 @@ export class CompanyService {
   updateCompany(id: number, company: Company): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${id}`, company);
   }
+  
+/*
+    createCompany(company: Company): Observable<any> {
+      return this.http.post('/api/companies', company);
+    }
+
+updateCompany(id: number, company: Company): Observable<any> {
+  return this.http.put(`/api/companies/${id}`, company);
+}*/
 
   deleteCompany(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
+
+export type { Company };

@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Companies List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Organization Number</th>
+        <th>Contact Person</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of companies">
+        <td>{{ company.id }}</td>
+        <td>{{ company.name }}</td>
+        <td>{{ company.organizationNumber }}</td>
+        <td>{{ company.contactPerson }}</td>
+        <td>{{ company.phoneNumber }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteCompany(company.id)" *ngIf="company.id !== undefined">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
