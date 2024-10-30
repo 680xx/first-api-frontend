@@ -5,14 +5,16 @@ import { CompanyListComponent } from './app/components/company-list/company-list
 import { CompanyFormComponent } from './app/components/company-form/company-form.component';
 import { ListCompaniesComponent } from './app/components/list-companies/list-companies.component';
 import { AppComponent } from './app/app.component';
+import { MainviewComponent } from './app/components/mainview/mainview.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideRouter([
-      { path: '', component: CompanyListComponent },
+      { path: '', component: MainviewComponent}
+/*      { path: '', component: CompanyListComponent },
       { path: 'create', component: CompanyFormComponent },
-      { path: 'list', component: ListCompaniesComponent}
+      { path: 'list', component: ListCompaniesComponent} */
     ])
   ]
 }).catch(err => console.error(err));
