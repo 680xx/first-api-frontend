@@ -5,7 +5,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', component: CompanyFormComponent }
+  { path: '', component: CompanyListComponent },
+  { path: 'create', component: CompanyFormComponent },
+  { path: 'list', component: ListCompaniesComponent}
 ];
 
 @NgModule({

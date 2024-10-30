@@ -10,7 +10,7 @@ export class CompanyService {
   private apiUrl = 'http://localhost:5028/api/company';
 
   constructor(private http: HttpClient) {}
-
+  
   getCompanies(): Observable<Company[]> {
     return this.http.get<Company[]>(this.apiUrl);
   }
@@ -23,19 +23,10 @@ export class CompanyService {
     return this.http.post<Company>(this.apiUrl, company);
   }
 
-  updateCompany(id: number, company: Company): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, company);
+  updateCompany(id: number, company: Company): Observable<Company> {
+    return this.http.put<Company>(`${this.apiUrl}/${id}`, company);
   }
   
-/*
-    createCompany(company: Company): Observable<any> {
-      return this.http.post('/api/companies', company);
-    }
-
-updateCompany(id: number, company: Company): Observable<any> {
-  return this.http.put(`/api/companies/${id}`, company);
-}*/
-
   deleteCompany(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
