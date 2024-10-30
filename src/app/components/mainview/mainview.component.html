@@ -5,24 +5,23 @@
   <table class="table">
     <thead>
       <tr class="list">
-        <div style="display: grid; grid-template-columns: 100px;">
+        <div>
           <th>ID</th>
         </div>
-        <div style="display: grid; grid-template-columns: 600px; margin-left: 110px;">
+        <div>
           <th>Company Name</th>
         </div>
-        <div style="display: grid; grid-template-columns: 600px; margin-left: 720px;">
+        <div>
           <th>Actions</th>
         </div>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let company of companies">
+      <tr class="list"style="background-color: rgb(220, 220, 220)" *ngFor="let company of companies">
         <td>{{ company.id }}</td>
         <td>{{ company.name }}</td>
         <td>
           <button (click)="deleteCompany(company.id)" *ngIf="company.id !== undefined">Delete</button>
-
         </td>
       </tr>
     </tbody>
