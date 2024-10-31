@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { Company } from '../../models/company';
 import { CommonModule } from '@angular/common';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-mainview',
@@ -24,6 +25,12 @@ export class MainviewComponent implements OnInit {
       next: (data) => (this.companies = data),
       error: (error) => console.error('Error fetching companies', error)
     });
+  }
+
+  viewCompany(id: number): void {
+    this.companyService.getCompanyById(id).subscribe({
+
+    }); // Assuming you have a route defined for viewing a company
   }
 
   deleteCompany(id: number): void {
