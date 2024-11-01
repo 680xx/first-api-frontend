@@ -13,7 +13,7 @@ import {FormsModule} from '@angular/forms';
 })
 export class MainviewComponent implements OnInit {
   companies: Company[] = [];
-  selectedCompany?: Company;
+  selectedCompany: Company = { id: undefined, name: '' } as Company;
 
   constructor(private companyService: CompanyService) {}
 
@@ -68,6 +68,7 @@ export class MainviewComponent implements OnInit {
             console.log('Company created successfully');
             this.companies.push(newCompany); // Lägg till det nya företaget i listan
             this.loadCompanies(); // Uppdatera listan för att säkerställa att den är sorterad
+            this.selectedCompany = { id: undefined, name: '' } as Company;
           },
           error: (error) => console.error('Error creating company', error)
         });

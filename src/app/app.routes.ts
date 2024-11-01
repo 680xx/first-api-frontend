@@ -1,15 +1,13 @@
-import { ListCompaniesComponent } from './components/list-companies/list-companies.component';
-import { CompanyListComponent } from './components/company-list/company-list.component';
-import { CompanyFormComponent } from './components/company-form/company-form.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LandingPageComponent} from './components/landing-page/landing-page.component';
+import { LoginPageComponent} from './components/login-page/login-page.component';
 import { MainviewComponent } from './components/mainview/mainview.component';
 
 export const routes: Routes = [
-  { path: '', component: MainviewComponent}
-/*  { path: '', component: CompanyListComponent },
-  { path: 'create', component: CompanyFormComponent },
-  { path: 'list', component: ListCompaniesComponent} */
+  { path: '', component: LandingPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'main', component: MainviewComponent }
 ];
 
 @NgModule({
