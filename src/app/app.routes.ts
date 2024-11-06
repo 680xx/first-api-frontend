@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingPageComponent} from './components/landing-page/landing-page.component';
-import { LoginPageComponent} from './components/login-page/login-page.component';
-import { MainviewComponent } from './components/mainview/mainview.component';
 import { UserComponent} from './components/user/user.component';
+import {RegistrationComponent} from './components/registration/registration.component';
+import {LoginComponent} from './components/login/login.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
-  { path: '', component: UserComponent},
-  { path: 'landing', component: LandingPageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'main', component: MainviewComponent }
+  { path: '', component: UserComponent,
+    children: [
+      { path: 'signup', component: RegistrationComponent },
+      { path: 'signin', component: LoginComponent }
+    ]
+  },
+  { path:'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({

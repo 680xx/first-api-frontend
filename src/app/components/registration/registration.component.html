@@ -1,3 +1,10 @@
+<div>
+
+  <h2>Sign up</h2>
+  <div class="header">
+    Already have an account?
+    <a routerLink="/signin" class="header">Sign in</a>
+  </div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form_element">
     <input placeholder="Full Name" formControlName="fullName">
@@ -15,3 +22,4 @@
     <button type="submit">Register</button>
   </div>
 </form>
+</div>

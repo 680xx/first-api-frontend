@@ -1,0 +1,18 @@
+<div>
+  <h2>Sign in</h2>
+  <div class="header">
+    Don't have an account?
+    <a routerLink="/signup" class="header">Sign up</a>
+    </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form_element">
+    <input placeholder="E-Mail" formControlName="email">
+  </div>
+  <div class="form_element">
+    <input placeholder="Password" formControlName="password">
+  </div>
+  <div class="form_button">
+    <button type="submit">Sign in</button>
+  </div>
+</form>
+</div>

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from '@angular/forms';
 import {CommonModule, NgIf} from '@angular/common';
 import {AuthService} from '../../services/auth.service';
+import {RouterLink} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'
 })
@@ -16,7 +18,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private service: AuthService) {}
+    private service: AuthService,) {}
+    // private toastr:ToastrService) { }
 
   passwordMatchValidator: ValidatorFn = (control:AbstractControl):null => {
     const password = control.get('password')
@@ -45,11 +48,15 @@ export class RegistrationComponent implements OnInit {
     if(this.form.valid) {
       this.service.createUser(this.form.value)
         .subscribe({
-          next:(res:any)=> {
-            if(res.succeeded) {
+          next: (res: any)=> {
+            if (res.succeeded) {
             this.form.reset();
+            this.isSubmitted = false;
+            // this.toastr.success('New user created!', 'Registration Successful')
           }
-            console.log(res);
+            else
+              console.log('response:', res);
+
           },
           error:err => console.log('error', err)
         });
