@@ -4,6 +4,7 @@ import { UserComponent} from './components/user/user.component';
 import {RegistrationComponent} from './components/registration/registration.component';
 import {LoginComponent} from './components/login/login.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {authGuard} from './services/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: UserComponent,
@@ -12,7 +13,7 @@ export const routes: Routes = [
       { path: 'signin', component: LoginComponent }
     ]
   },
-  { path:'dashboard', component: DashboardComponent }
+  { path:'dashboard', component: DashboardComponent, canActivate: [authGuard] }
 ];
 
 @NgModule({

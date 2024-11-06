@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators} from '@angular/forms';
-import {CommonModule, NgIf} from '@angular/common';
-import {AuthService} from '../../services/auth.service';
-import {RouterLink} from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -13,13 +12,17 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent implements OnInit {
-  isSubmitted:boolean = false;
-  form!: FormGroup;
-
   constructor(
     public formBuilder: FormBuilder,
-    private service: AuthService,) {}
-    // private toastr:ToastrService) { }
+    private service: AuthService,
+    private router: Router) { }
+  isSubmitted:boolean = false;
+
+
+
+  form!: FormGroup;
+
+
 
   passwordMatchValidator: ValidatorFn = (control:AbstractControl):null => {
     const password = control.get('password')
@@ -34,6 +37,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.service.isLoggedIn())
+      this.router.navigateByUrl('/dashboard')
     this.form = this.formBuilder.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -41,7 +46,6 @@ export class RegistrationComponent implements OnInit {
       confirmPassword: [''],
     }, {validators: this.passwordMatchValidator})
   }
-
 
   onSubmit() {
     this.isSubmitted = true;
@@ -52,7 +56,6 @@ export class RegistrationComponent implements OnInit {
             if (res.succeeded) {
             this.form.reset();
             this.isSubmitted = false;
-            // this.toastr.success('New user created!', 'Registration Successful')
           }
             else
               console.log('response:', res);

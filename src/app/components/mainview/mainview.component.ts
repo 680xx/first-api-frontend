@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { Company } from '../../models/company';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mainview',

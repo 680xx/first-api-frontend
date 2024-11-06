@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { TOKEN_KEY } from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,18 @@ export class AuthService {
 
   signin(formData:any) {
     return this.http.post(this.baseURL+'/signin',formData);
+  }
+
+  // Returnerar true/false beroende om användaren har en Token eller ej
+  isLoggedIn() {
+    return localStorage.getItem(TOKEN_KEY) != null ? true : false;
+  }
+
+  saveToken(token: string) {
+    localStorage.setItem(TOKEN_KEY, token);
+  }
+
+  deleteToken() {
+    localStorage.removeItem(TOKEN_KEY);
   }
 }
