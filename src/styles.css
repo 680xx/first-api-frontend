@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(186, 223, 243);
   color: black;
   font-family: "Inter", sans-serif;
+}
+
+#main {
+  margin-left: 240px;
+}
+
+#sidebar {
+  width: 240px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

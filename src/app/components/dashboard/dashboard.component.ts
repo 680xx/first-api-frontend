@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,15 +10,21 @@ import {AuthService} from '../../services/auth.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private userService: UserService) { }
+  fullName: string = ''
 
-  onLogout() {
-    this.authService.deleteToken()
-    this.router.navigateByUrl('/signin');
-  }
+  ngOnInit(): void {
+        this.userService.getUserProfile().subscribe({
+          next: (res: any) => this.fullName = res.fullName,
+          error: (err: any) => console.log('error while retrieving user profile:\n', err)
+        })
+    }
+
+
 
 }
