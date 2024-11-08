@@ -11,6 +11,8 @@ import {FemaleUsersOnlyComponent} from './authorizeDemo/female-users-only/female
 import {LibraryMembersOnlyComponent} from './authorizeDemo/library-members-only/library-members-only.component';
 import {MaleUsersUnderAgeOf10OnlyComponent} from './authorizeDemo/male-users-under-age-of-10-only/male-users-under-age-of-10-only.component';
 import {MainLayoutComponent} from './layouts/main-layout/main-layout.component';
+import {ForbiddenComponent} from './components/forbidden/forbidden.component';
+import {claimReq} from './utils/claimReq-utils';
 
 export const routes: Routes = [
   { path: '', component: UserComponent,
@@ -21,13 +23,34 @@ export const routes: Routes = [
   },
   {
     path: '', component: MainLayoutComponent, canActivate: [authGuard],
+    canActivateChild: [authGuard],
     children: [
-      {path: 'dashboard', component: DashboardComponent},
-      {path: 'admin-only', component: AdminOnlyComponent},
-      {path: 'admin-or-owner', component: AdminOrOwnerComponent},
-      {path: 'female-users-only', component: FemaleUsersOnlyComponent},
-      {path: 'library-members', component: LibraryMembersOnlyComponent},
-      {path: 'male-users-under-age-of-10-only', component: MaleUsersUnderAgeOf10OnlyComponent}
+      {
+        path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'admin-only', component: AdminOnlyComponent,
+        data: { claimReq: claimReq.adminOnly }
+      },
+      {
+        path: 'admin-or-owner', component: AdminOrOwnerComponent,
+        data: { claimReq: claimReq.adminOrOwner }
+      },
+      {
+        path: 'female-users-only', component: FemaleUsersOnlyComponent,
+        data: { claimReq: claimReq.femaleUsers }
+      },
+      {
+        path: 'library-members-only', component: LibraryMembersOnlyComponent,
+        data: { claimReq: claimReq.hasLibraryId }
+      },
+      {
+        path: 'male-users-under-age-of-10-only', component: MaleUsersUnderAgeOf10OnlyComponent,
+        data: { claimReq: claimReq.maleUsersUnderAgeOf10 }
+      },
+      {
+        path: 'forbidden', component: ForbiddenComponent
+      }
       // Alternativ för att använda authGuard på enbart 1
       // {path: 'male-users-under-age-of-10-only', component: MaleUsersUnderAgeOf10OnlyComponent, canActivate: [authGuard]}
     ],

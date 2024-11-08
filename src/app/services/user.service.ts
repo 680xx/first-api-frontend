@@ -13,6 +13,9 @@ export class UserService {
               private authService: AuthService) { }
 
   getUserProfile() {
-    return this.http.get(environment.apiBaseUrl + '/userprofile')
+    const reqHeader = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.authService.getToken()
+    })
+    return this.http.get(environment.apiBaseUrl + '/userprofile', {headers: reqHeader })
   }
 }

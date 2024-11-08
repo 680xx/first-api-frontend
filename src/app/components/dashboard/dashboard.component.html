@@ -1,5 +1,6 @@
-<div class="dashboard">
 
-  <h1>Welcome Aboard!</h1>
-  <h1>{{fullName}}</h1>
+<div class="text-center">
+  <h1 class="display-6">Welcome Aboard!</h1>
+  <h1 class="display-6 fw-bolder text-dark">{{ fullName }}</h1>
+  <button [appHideIfClaimsNotMet]="claimReq.adminOnly" class="btn btn-danger">Some Admin Operations</button>
 </div>

@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background-color: rgb(186, 223, 243);
+  background-color: rgb(213, 223, 243);
   color: black;
   font-family: "Inter", sans-serif;
 }
@@ -14,4 +14,9 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+#sidebar li.nav:hover {
+  background-color: #007fff17;
+  border-radius: 0.5rem;
 }
