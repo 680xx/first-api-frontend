@@ -1,8 +1,45 @@
-.navbar {
+
+/* Sidebar specific styling */
+#sidebar {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 100%;
+  height: 100vh;
+  width: 250px; /* Adjust as needed for sidebar width */
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Main navbar styling */
+#main .navbar {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  padding: 0.5rem 1rem; /* Adjust for spacing */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Main content adjustment to account for sidebar width */
+#main {
+  margin-left: 250px; /* Same width as the sidebar */
+  overflow-y: auto;
+  height: 100vh;
+}
+
+#main .content {
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 60px); /* Adjust based on header height */
+}
+
+.nav-link {
+
 }

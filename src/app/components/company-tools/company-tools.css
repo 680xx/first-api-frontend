@@ -1,0 +1,22 @@
+.title {
+  margin-bottom: 20px;
+}
+
+.table {
+  margin-top: 1px;
+  display: grid;
+  grid-template-columns: 50px 500px 150px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 250px 450px;
+  grid-row-gap: 4px;
+}
+
+.form_title {
+   display: grid;
+   grid-template-columns: 250px 450px;
+   grid-row-gap: 4px;
+   margin-top: 40px;
+ }

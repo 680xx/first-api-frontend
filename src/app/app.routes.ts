@@ -13,8 +13,13 @@ import {MaleUsersUnderAgeOf10OnlyComponent} from './authorizeDemo/male-users-und
 import {MainLayoutComponent} from './layouts/main-layout/main-layout.component';
 import {ForbiddenComponent} from './components/forbidden/forbidden.component';
 import {claimReq} from './utils/claimReq-utils';
+import {LandingComponent} from './components/landing/landing.component';
+import {CompanyTools} from './components/company-tools/company-tools';
+import {CompanyList} from './components/company-list/company-list';
 
 export const routes: Routes = [
+  { path: '', component: LandingComponent
+  },
   { path: '', component: UserComponent,
     children: [
       { path: 'signup', component: RegistrationComponent },
@@ -27,6 +32,13 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'company-list', component: CompanyList
+      },
+      {
+        path: 'company-tools', component: CompanyTools,
+        data: { claimReq: claimReq.adminOrOwner }
       },
       {
         path: 'admin-only', component: AdminOnlyComponent,

@@ -3,22 +3,29 @@ import { CompanyService } from '../../services/company.service';
 import { Company } from '../../models/company';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {claimReq} from '../../utils/claimReq-utils';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
-  selector: 'app-mainview',
+  selector: 'app-company-tools',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './mainview.component.html',
-  styleUrl: './mainview.component.css'
+  templateUrl: './company-tools.html',
+  styleUrl: './company-tools.css'
 })
-export class MainviewComponent implements OnInit {
+export class CompanyTools implements OnInit {
   companies: Company[] = [];
   selectedCompany: Company = { id: undefined, name: '' } as Company;
+  isAdmin: boolean = false;
 
-  constructor(private companyService: CompanyService) {}
+  constructor(private companyService: CompanyService, private authService: AuthService) {
 
-  ngOnInit(): void {
+  }
+
+    ngOnInit(): void {
     this.loadCompanies();
+    const claims = this.authService.getClaims();
+    this.isAdmin = claimReq.adminOnly(claims);
   }
 
   loadCompanies(): void {
@@ -31,6 +38,8 @@ export class MainviewComponent implements OnInit {
   }
 
   deleteCompany(id: number): void {
+    const confirmed = window.confirm('Are you sure you want to delete this company?');
+    if (confirmed)
     this.companyService.deleteCompany(id).subscribe({
       next: () => this.loadCompanies(),
       error: (error) => console.error('Error deleting company', error)
@@ -86,4 +95,6 @@ export class MainviewComponent implements OnInit {
       }
     }
   }
+
+  protected readonly claimReq = claimReq;
 }

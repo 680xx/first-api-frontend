@@ -3,14 +3,14 @@ import { CompanyService, Company } from '../../services/company.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-list-companies',
+  selector: 'app-company-list',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './list-companies.component.html',
-  styleUrl: './list-companies.component.css'
+  templateUrl: './company-list.html',
+  styleUrl: './company-list.css'
 })
 
-export class ListCompaniesComponent implements OnInit {
+export class CompanyList implements OnInit {
   companies: Company[] | null = null;
 
   constructor(private companyService: CompanyService) {}

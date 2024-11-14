@@ -4,12 +4,16 @@
   margin: 0;
   justify-content: center;
   align-items: center;
-}
+  }
 
 .container {
   display: flex;
-  width: 260px;
-  height: 200px;
-  background-color: #ffffff;
-
+  width: 280px;
+  height: 280px;
+  padding-top: 16px;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 8px;
+  border: 2px solid #ddd;
 }
