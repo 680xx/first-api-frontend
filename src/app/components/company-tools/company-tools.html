@@ -2,6 +2,7 @@
   <div class="title">
     <h2>Companies</h2>
   </div>
+
   <table>
     <thead>
     <tr>
@@ -10,16 +11,68 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let company of companies">
+    <tr *ngFor="let company of paginatedCompanies">
       <td style="width: 50px">{{ company.id }}</td>
       <td style="width: 524px">{{ company.name }}</td>
       <td style="width: 130px; text-align: right;">
-        <button style="margin-right: 8px;" (click)="deleteCompany(company.id)" *ngIf="company.id !== undefined && isAdmin">Delete</button>
-        <button (click)="viewCompany(company.id)" *ngIf="company.id !== undefined">View</button>
+        <button
+          style="margin-right: 8px;"
+          (click)="deleteCompany(company.id)"
+          *ngIf="company.id !== undefined && isAdmin"
+        >
+          Delete
+        </button>
+        <button
+          (click)="viewCompany(company.id)"
+          *ngIf="company.id !== undefined"
+        >
+          View
+        </button>
       </td>
     </tr>
     </tbody>
   </table>
+
+
+
+  <div class="pagination-container">
+    <!-- Items Per Page Selector -->
+    <div class="pagination-controls">
+      <label for="itemsPerPage">Items per page:</label>
+      <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange(itemsPerPage)">
+        <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <!-- Previous Page -->
+      <button (click)="previousPage()" [disabled]="currentPage === 1" class="pagination-arrow">
+        &#8592; <!-- Left arrow -->
+      </button>
+
+      <!-- Page Indicator -->
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+      <!-- Next Page -->
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="pagination-arrow">
+        &#8594; <!-- Right arrow -->
+      </button>
+    </div>
+
+
+  </div>
+
+
+  <!-- Search Box -->
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search company by name..."
+      (input)="filterCompanies()"
+    />
+  </div>
+
 
   <!-- Form viewing company information -->
   <div *ngIf="selectedCompany">

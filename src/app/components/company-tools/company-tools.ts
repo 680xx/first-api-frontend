@@ -15,10 +15,19 @@ import {AuthService} from '../../services/auth.service';
 })
 export class CompanyTools implements OnInit {
   companies: Company[] = [];
+  allCompanies: Company[] = [];
   selectedCompany: Company = { id: undefined, name: '' } as Company;
   isAdmin: boolean = false;
+  searchTerm: string = '';
 
-  constructor(private companyService: CompanyService, private authService: AuthService) {
+  // Pagination properties
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  pageSizeOptions: number[] = [5, 10, 20, 50]; // Options for items per page
+
+  constructor(
+    private companyService: CompanyService,
+    private authService: AuthService) {
 
   }
 
@@ -32,9 +41,46 @@ export class CompanyTools implements OnInit {
     this.companyService.getCompanies().subscribe({
       next: (data) => {
         this.companies = data.sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
+        this.allCompanies = [...this.companies];
         },
       error: (error) => console.error('Error fetching companies', error)
     });
+  }
+
+  filterCompanies(): void {
+    const filtered = this.allCompanies.filter(company =>
+      company.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    this.companies = filtered;
+    this.currentPage = 1; // Reset to the first page after filtering
+  }
+
+  // Pagination methods
+  get paginatedCompanies(): Company[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.companies.slice(startIndex, endIndex);
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.companies.length / this.itemsPerPage);
+  }
+
+  onItemsPerPageChange(newItemsPerPage: number): void {
+    this.itemsPerPage = newItemsPerPage;
+    this.currentPage = 1; // Reset to the first page
   }
 
   deleteCompany(id: number): void {
@@ -52,18 +98,6 @@ export class CompanyTools implements OnInit {
       error: (error) => console.error('Error fetching company details', error)
     });
   }
-
-  /*updateSelectedCompany(): void {
-    if (this.selectedCompany && this.selectedCompany.id !== undefined) {
-      this.companyService.updateCompany(this.selectedCompany.id, this.selectedCompany).subscribe({
-        next: () => {
-          console.log('Company updated successfully');
-          this.loadCompanies(); // Uppdatera listan med företag efter uppdatering
-        },
-        error: (error) => console.error('Error updating company', error)
-      });
-    }
-  }*/
 
   updateSelectedCompany(): void {
     if (this.selectedCompany) {
