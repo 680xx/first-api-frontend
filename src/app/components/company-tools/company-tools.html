@@ -43,25 +43,21 @@
         <option *ngFor="let option of pageSizeOptions" [value]="option">{{ option }}</option>
       </select>
     </div>
+
     <!-- Pagination Controls -->
     <div class="pagination">
-      <!-- Previous Page -->
+
       <button (click)="previousPage()" [disabled]="currentPage === 1" class="pagination-arrow">
-        &#8592; <!-- Left arrow -->
+        &#8592;
       </button>
 
-      <!-- Page Indicator -->
       <span>Page {{ currentPage }} of {{ totalPages }}</span>
 
-      <!-- Next Page -->
       <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="pagination-arrow">
-        &#8594; <!-- Right arrow -->
+        &#8594;
       </button>
     </div>
-
-
   </div>
-
 
   <!-- Search Box -->
   <div class="search-box">
@@ -73,26 +69,25 @@
     />
   </div>
 
-
   <!-- Form viewing company information -->
   <div *ngIf="selectedCompany">
     <h2 class="form_title">Company Details</h2>
     <form>
       <td class="form">
       <label for="companyId">ID:</label>
-      <input type="number" id="companyId" [(ngModel)]="selectedCompany.id" name="companyId" />
+      <input type="number" id="companyId" [(ngModel)]="selectedCompany.id" placeholder="ID" name="companyId" />
 
       <label for="companyName">Name:</label>
-      <input type="text" id="companyName" [(ngModel)]="selectedCompany.name" name="companyName" />
+      <input type="text" id="companyName" [(ngModel)]="selectedCompany.name" placeholder="Company Name" name="companyName" />
 
       <label for="organizationNumber">Organization Number:</label>
-      <input type="text" id="organizationNumber" [(ngModel)]="selectedCompany.organizationNumber" name="organizationNumber">
+      <input type="text" id="organizationNumber" [(ngModel)]="selectedCompany.organizationNumber" placeholder="Organization Number" name="organizationNumber">
 
       <label for="contactPerson">Contact Person:</label>
-      <input type="text" id="contactPerson" [(ngModel)]="selectedCompany.contactPerson" name="contactPerson">
+      <input type="text" id="contactPerson" [(ngModel)]="selectedCompany.contactPerson" placeholder="Contact Person" name="contactPerson">
 
       <label for="phoneNumber">Phone Number:</label>
-      <input type="text" id="phoneNumber" [(ngModel)]="selectedCompany.phoneNumber" name="phoneNumber">
+      <input type="text" id="phoneNumber" [(ngModel)]="selectedCompany.phoneNumber" placeholder="Phone Number" name="phoneNumber">
         <br>
         <button style="horiz-align: right; margin-top: 20px" type="button" (click)="updateSelectedCompany()">Create / Update</button>
       </td>

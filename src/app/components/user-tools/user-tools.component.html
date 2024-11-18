@@ -1,0 +1,101 @@
+<!--
+<div>
+  <h2>User Tools</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="createUser()">
+    <input formControlName="email" placeholder="Email" />
+    <input formControlName="password" placeholder="Password" type="password" />
+    <input formControlName="fullName" placeholder="Full Name" />
+    <input formControlName="role" placeholder="Role" />
+    <input formControlName="gender" placeholder="Gender" />
+    <input formControlName="age" placeholder="Age" type="number" />
+    <input formControlName="libraryID" placeholder="Library ID" type="number" />
+    <button type="submit">Create User</button>
+  </form>
+
+  <h2>User List</h2>
+  <ul>
+    <li *ngFor="let user of users">
+      {{ user.fullName }} - {{ user.email }}
+      <button (click)="updateUser(user.id)">Update</button>
+      <button (click)="deleteUser(user.id)">Delete</button>
+    </li>
+  </ul>
+</div>
+-->
+<div class="container">
+
+
+  <!-- User List -->
+  <div class="title">
+    <h2>Users</h2>
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>User Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.fullName }}</td>
+      <td>{{ user.email }}</td>
+      <td style="text-align: right;">
+        <button
+          (click)="updateUser(user.id)"
+          style="margin-right: 8px;"
+        >
+          Update
+        </button>
+        <button
+          (click)="deleteUser(user.id)"
+          style="margin-right: 8px;"
+        >
+          Delete
+        </button>
+        <button
+          (click)="fillForm(user)"
+          style="margin-right: 8px;"
+        >
+          View
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="title">
+    <h2>User Details</h2>
+  </div>
+
+  <!-- User Form -->
+  <form [formGroup]="userForm" (ngSubmit)="createUser()">
+    <div class="form">
+      <label for="email">Email:</label>
+      <input formControlName="email" id="email" placeholder="Email" />
+
+      <label for="password">Password:</label>
+      <input formControlName="password" id="password" placeholder="Password" type="password" />
+
+      <label for="fullName">Full Name:</label>
+      <input formControlName="fullName" id="fullName" placeholder="Full Name" />
+
+      <label for="role">Role:</label>
+      <input formControlName="role" id="role" placeholder="Role (Admin / Owner / User)" />
+
+      <label for="gender">Gender:</label>
+      <input formControlName="gender" id="gender" placeholder="Gender" />
+
+      <label for="age">Age:</label>
+      <input formControlName="age" id="age" placeholder="Age" type="number" />
+
+      <label for="libraryID">Library ID:</label>
+      <input formControlName="libraryID" id="libraryID" placeholder="Library ID" type="number" />
+
+      <button type="submit" class="create-button">Create User</button>
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,64 @@
+.title {
+  margin-bottom: 20px;
+}
+
+.table {
+  margin-top: 1px;
+  display: grid;
+  grid-template-columns: 50px 500px 150px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 250px 450px;
+  grid-row-gap: 4px;
+}
+
+.form_title {
+  display: grid;
+  grid-template-columns: 250px 450px;
+  grid-row-gap: 4px;
+  margin-top: 40px;
+}
+
+.search-box {
+  margin-top: 20px;
+
+;
+}
+
+.pagination-container {
+  display: flex;
+  align-items: center; /* Aligns items vertically */
+  justify-content: flex-start; /* Spaces elements evenly */
+  margin-top: 10px;
+  gap: 20px; /* Space between controls and pagination */
+}
+
+.pagination-controls,
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between inner elements */
+}
+
+.pagination-arrow {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-arrow:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+label {
+  margin-right: 5px; /* Adds spacing between label and dropdown */
+}

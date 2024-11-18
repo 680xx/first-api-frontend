@@ -16,6 +16,8 @@ import {claimReq} from './utils/claimReq-utils';
 import {LandingComponent} from './components/landing/landing.component';
 import {CompanyTools} from './components/company-tools/company-tools';
 import {CompanyList} from './components/company-list/company-list';
+import {UserToolsComponent} from './components/user-tools/user-tools.component';
+import {FormsModule} from '@angular/forms';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent
@@ -30,6 +32,10 @@ export const routes: Routes = [
     path: '', component: MainLayoutComponent, canActivate: [authGuard],
     canActivateChild: [authGuard],
     children: [
+      {
+        path: 'user-tools', component: UserToolsComponent,
+        data: { claimReq: claimReq.adminOnly }
+      },
       {
         path: 'dashboard', component: DashboardComponent
       },
@@ -70,7 +76,7 @@ export const routes: Routes = [
   ];
 
     @NgModule({
-      imports: [RouterModule.forRoot(routes)],
+      imports: [RouterModule.forRoot(routes), FormsModule],
       exports: [RouterModule],
     })
     export class AppRoutingModule { }

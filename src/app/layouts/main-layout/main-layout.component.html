@@ -13,6 +13,9 @@
     <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOrOwner">
       <a class="nav-link" routerLink="/company-tools">Company Tools</a>
     </li>
+    <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOrOwner">
+      <a class="nav-link" routerLink="/user-tools">User Tools</a>
+    </li>
 <!--    <li class="nav-item" [appHideIfClaimsNotMet]="claimReq.adminOnly">
       <a class="nav-link" routerLink="/admin-only">Admin Only</a>
     </li>
