@@ -26,11 +26,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-        if(this.service.isLoggedIn())
-          this.router.navigateByUrl('/dashboard')
-    }
+    if(this.service.isLoggedIn())
+      this.router.navigateByUrl('/dashboard')
+  }
 
-onSubmit() {
+  onSubmit() {
     this.isSubmitted = true;
     if(this.form.valid) {
       this.service.signin(this.form.value).subscribe({

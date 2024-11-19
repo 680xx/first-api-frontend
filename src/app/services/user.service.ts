@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {AuthService} from './auth.service';
 
 export interface User {
   id?: number;
@@ -19,7 +20,7 @@ export interface User {
 export class UserService {
   private baseUrl = 'http://localhost:5028';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/users`);
@@ -41,7 +42,15 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/signin`, { email, password });
   }
 
-  getUserProfile(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/profile`);
+/*  getUserProfile(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/api/Userprofile`);
+  }*/
+
+    getUserProfile(): Observable<any> {
+    const token = this.authService.getToken(); // Assuming you have a method to get the auth token
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`  // Add the token to the Authorization header
+    });
+    return this.http.get(`${this.baseUrl}/api/Userprofile`, { headers });
   }
 }
