@@ -24,7 +24,7 @@ export class UserToolsComponent implements OnInit {
       role: [''],
       gender: [''],
       age: [null],
-      libraryID: [null],
+      // libraryID: [null],
     });
   }
 
@@ -72,6 +72,7 @@ export class UserToolsComponent implements OnInit {
   }
 
   fillForm(user: User) {
+    console.log(user); // Debug the User object
     this.userForm.patchValue({
       email: user.email,
       password: '', // Håll lösenordet tomt för säkerhet
@@ -79,7 +80,7 @@ export class UserToolsComponent implements OnInit {
       role: user.role,
       gender: user.gender,
       age: user.age,
-      libraryID: user.libraryID,
+      // libraryID: user.libraryID,
     });
   }
 }
